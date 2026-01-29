@@ -311,13 +311,17 @@
             </div><!-- Edn Resume Item -->
 
             <div class="resume-item">
-              <h4>AcciGuard – Real-Time Accident Probability Assessment System</h4>
-              <h5>March 2025 – July 2025</h5>
-              <p><em>Internal R&D / PoC</em></p>
+              <h4>Foresight – Real-Time Predictive Safety Engine</h4>
+              <h5>Dec. 2025 – Feb. 2026</h5>
+              <p><em>Lead Mobile Engineer & Architect | Technologies: Flutter, Dart, SQLite, REST APIs, Sensor Fusion</em></p>
+              <p>Designed and engineered a privacy-first mobile application that predicts driving risk in real-time. Unlike traditional navigation apps, Foresight utilizes a proprietary Weighted Multi-Factor Linear Model running entirely on-device to process environmental data and provide proactive audio-haptic warnings without server latency.</p>
               <ul>
-                <li>Engineered a real-time risk assessment system with Angular (front-end) and Flask (back-end).</li>
-                <li>Integrated Google Maps API & GPS data to analyze speed limits, traffic conditions, and driving behavior.</li>
-                <li>Delivered visual and audio alerts for immediate driver notifications on elevated risk levels.</li>
+                <li><strong>Real-Time Sensor Fusion Engine:</strong> Developed a local risk calculation engine that synthesizes data from 5 distinct sources (Speed, Traffic Congestion, Weather, Solar Position, and Road Type) every second to compute a dynamic risk probability ($P_{final}$).</li>
+                <li><strong>Robust Background Architecture:</strong> Implemented a high-reliability background service using Dart Isolates and platform channels to ensure continuous GPS tracking and risk analysis even when the app is terminated or the screen is off, achieving &lt;2% battery drain per hour.</li>
+                <li><strong>Algorithmic Implementation:</strong> Engineered an Erratic Driving Detection algorithm that analyzes gyroscope heading variance (&gt;15° changes) and accelerometer data to detect weaving or zig-zag motion at speeds &gt;25 km/h.</li>
+                <li><strong>Offline-First & Resiliency:</strong> Built a "Smart Caching" system using SQLite and SharedPreferences that persists environmental data, allowing the risk engine to function seamlessly in dead zones (e.g., tunnels) where API calls fail.</li>
+                <li><strong>Dynamic Resource Optimization:</strong> Created a Smart API Throttling mechanism that adjusts data polling frequency based on vehicle speed and location context (City vs. Highway), reducing API costs by ~60% while maintaining safety precision.</li>
+                <li><strong>Data Visualization & Persistence:</strong> Designed a high-performance history module capable of visualizing thousands of data points with SQL-level downsampling (GROUP BY 5s windows) for instant graph rendering and CSV export.</li>
               </ul>
             </div><!-- Edn Resume Item -->
 
@@ -379,9 +383,9 @@
               <div class="portfolio-content h-100">
                 <img src="assets/img/portfolio/app-3.jpg" class="img-fluid" alt="">
                 <div class="portfolio-info">
-                  <h4>AcciGuard</h4>
-                  <p>A real-time risk assessment system designed to predict accident probability using GPS data, traffic conditions, and driving behavior inputs.</p>
-                  <a href="assets/img/portfolio/app-3.jpg" title="AcciGuard" data-gallery="portfolio-gallery-app"
+                  <h4>Foresight</h4>
+                  <p>A privacy-first mobile application that predicts driving risk in real-time using on-device processing and sensor fusion.</p>
+                  <a href="assets/img/portfolio/app-3.jpg" title="Foresight" data-gallery="portfolio-gallery-app"
                     class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
                 </div>
               </div>
