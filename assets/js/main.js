@@ -111,6 +111,47 @@
   new PureCounter();
 
   /**
+   * Init depth interactions for hero and portfolio cards
+   */
+  function initDepthInteractions() {
+    const hero = document.querySelector('.hero');
+    const heroCard = document.querySelector('.hero-card');
+    const portfolioCards = document.querySelectorAll('.portfolio .portfolio-content');
+
+    if (hero && heroCard) {
+      hero.addEventListener('mousemove', (event) => {
+        const rect = hero.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+        heroCard.style.transform = `rotateY(${x * 12}deg) rotateX(${ -y * 10}deg)`;
+        heroCard.style.boxShadow = `${-x * 30}px ${y * 30}px 90px rgba(20,40,80,0.25)`;
+      });
+
+      hero.addEventListener('mouseleave', () => {
+        heroCard.style.transform = 'rotateY(0deg) rotateX(0deg)';
+        heroCard.style.boxShadow = '';
+      });
+    }
+
+    portfolioCards.forEach((card) => {
+      card.addEventListener('mousemove', (event) => {
+        const rect = card.getBoundingClientRect();
+        const x = (event.clientX - rect.left) / rect.width - 0.5;
+        const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+        card.style.transform = `perspective(900px) rotateY(${x * 8}deg) rotateX(${ -y * 8}deg)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+  }
+
+  initDepthInteractions();
+
+  /**
    * Animate the skills items on reveal
    */
   let skillsAnimation = document.querySelectorAll('.skills-animation');
