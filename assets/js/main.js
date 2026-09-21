@@ -15,9 +15,17 @@
   const headerToggleBtn = document.querySelector('.header-toggle');
 
   function headerToggle() {
-    document.querySelector('#header').classList.toggle('header-show');
-    headerToggleBtn.classList.toggle('bi-list');
-    headerToggleBtn.classList.toggle('bi-x');
+    const header = document.querySelector('#header');
+    const isOpen = header.classList.toggle('header-show');
+    document.body.classList.toggle('menu-open', isOpen);
+    headerToggleBtn.classList.toggle('bi-list', !isOpen);
+    headerToggleBtn.classList.toggle('bi-x', isOpen);
+    headerToggleBtn.setAttribute('aria-expanded', String(isOpen));
+    if (isOpen) {
+      header.style.setProperty('transform', 'translateX(0)', 'important');
+    } else {
+      header.style.removeProperty('transform');
+    }
   }
   headerToggleBtn.addEventListener('click', headerToggle);
 
@@ -75,6 +83,20 @@
 
   window.addEventListener('load', toggleScrollTop);
   document.addEventListener('scroll', toggleScrollTop);
+
+  /**
+   * Page reading progress
+   */
+  const progressBar = document.querySelector('.scroll-progress span');
+  function updateScrollProgress() {
+    if (!progressBar) return;
+    const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = scrollableHeight > 0 ? (window.scrollY / scrollableHeight) * 100 : 0;
+    progressBar.style.width = `${progress}%`;
+  }
+  window.addEventListener('load', updateScrollProgress);
+  document.addEventListener('scroll', updateScrollProgress, { passive: true });
+  window.addEventListener('resize', updateScrollProgress);
 
   /**
    * Animation on scroll function and init
